@@ -12,7 +12,7 @@ ENV PLUGIN_BUILD_GID=${PLUGIN_BUILD_GID:-9999}
 # that will be running this image.
 COPY --from=base --chown=$PLUGIN_BUILD_UID:$PLUGIN_BUILD_GID /baserow /baserow
 
-RUN groupmod -g $PLUGIN_BUILD_GID baserow_docker_group && usermod -u $PLUGIN_BUILD_UID $DOCKER_USER
+RUN groupmod -o -g $PLUGIN_BUILD_GID baserow_docker_group && usermod -u $PLUGIN_BUILD_UID $DOCKER_USER
 
 # Install your dev dependencies manually.
 COPY --chown=$PLUGIN_BUILD_UID:$PLUGIN_BUILD_GID ./plugins/upub/backend/requirements/dev.txt /tmp/plugin-dev-requirements.txt

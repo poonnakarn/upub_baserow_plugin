@@ -4,7 +4,7 @@
 #
 #    pip-compile --output-file=base.txt base.in
 #
--e /baserow/backend
+-e /Users/poon/Code/baserow/baserow/backend
     # via -r base.in
 
 # The following packages are considered to be unsafe in a requirements file:

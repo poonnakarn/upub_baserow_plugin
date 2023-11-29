@@ -12,7 +12,7 @@ ENV PLUGIN_BUILD_GID=${PLUGIN_BUILD_GID:-9999}
 # If we aren't building as the same user that owns all the files in the base
 # image/installed plugins we need to chown everything first.
 COPY --from=base --chown=$PLUGIN_BUILD_UID:$PLUGIN_BUILD_GID /baserow /baserow
-RUN groupmod -g $PLUGIN_BUILD_GID node && usermod -u $PLUGIN_BUILD_UID $DOCKER_USER
+RUN groupmod -o -g $PLUGIN_BUILD_GID node && usermod -u $PLUGIN_BUILD_UID $DOCKER_USER
 
 COPY --chown=$PLUGIN_BUILD_UID:$PLUGIN_BUILD_GID ./plugins/upub/ $BASEROW_PLUGIN_DIR/upub/
 RUN /baserow/plugins/install_plugin.sh --folder $BASEROW_PLUGIN_DIR/upub --dev
